@@ -134,15 +134,15 @@ def render_dashboard(filtered_data, name_prefix, color):
             st.info("Please select exactly 2 indicators.")
 
 # Page navigation
-page = st.sidebar.radio("*Go to*", ["Overview", "Agriculture"])
+page = st.sidebar.radio("*Go to*", ["Overview", "Environment"])
 
 if page == "Overview":
     set_background("sri_lanka.jpg")
     st.title("Sri Lanka Environmental Dashboard")
     st.markdown("### Overview")
-    st.markdown("The Sri Lanka Environmental Dashboard is a comprehensive and interactive platform designed to explore key indicators related to the country’s agricultural performance and rural development progress. Developed using data published by the Humanitarian Data Exchange (HDX), along with global indicators compiled by the Food and Agriculture Organization of the United Nations, this tool provides valuable insights about agricultural and rural development trends across multiple years.")
-    st.markdown("Agriculture and rural development are of critical importance to Sri Lanka’s economy and social well-being. The 70% of the world's poor who live in rural areas, agriculture remains the main source of income and employment. However, challenges such as land degradation, resource depletion, and water scarcity threaten long-term sustainability. Strengthening rural development not only enhances food security and economic resilience but also plays a vital role in achieving the United Nations Sustainable Development Goals, particularly those related to poverty reduction, hunger, and inclusive growth.")
-    st.markdown("### Column Descriptions\n- *Year: The year the data was recorded.\n- **Indicator Name: The name of the indicator. \n- **Indicator Code: A unique identifier for each indicator.\n- **Value*: The numeric value of the indicator for the given year.")
+    st.markdown("The Sri Lanka Environmental Dashboard is a comprehensive and interactive platform designed to explore key indicators related to the country’s environmental sustainability and natural resource management. Developed using global datasets, including those published by the World Bank and the Humanitarian Data Exchange (HDX), this tool offers valuable insights into Sri Lanka’s environmental health across multiple years.")
+    st.markdown("Natural and man-made environmental resources such as fresh water, clean air, forests, biodiversity, grasslands, and marine ecosystems are essential for the country’s social and economic development. However, challenges like deforestation, pollution, biodiversity loss, and climate change continue to pose serious threats to long-term sustainability. This dashboard brings attention to vital themes such as emissions, conservation, and pollution control, while also complementing data available in related sectors like agriculture, energy, infrastructure, and urban development. Strengthening environmental stewardship not only safeguards natural resources but also supports Sri Lanka's commitment to achieving the United Nations Sustainable Development Goals, especially those focused on climate action, life on land, and clean water and sanitation.")
+    st.markdown("### Column Descriptions\n- *Year*: The year the data was recorded.\n- *Indicator Name*: The name of the indicator. \n- *Indicator Code*: A unique identifier for each indicator.\n- *Value*: The numeric value of the indicator for the given year.")
     
     st.sidebar.subheader("Filters")
     search_keyword = st.sidebar.text_input("Search Indicator").strip().lower()
@@ -163,7 +163,11 @@ if page == "Overview":
 
 elif page == "Environment":
     set_background("env.jpg")
-    st.title(":ear_of_rice: Environmental Insights")
+    st.title(":deciduous_tree: Environment Insights")
+    env_data = data
+    if st.checkbox(":open_file_folder: *Show Environmental Dataset*"):
+        st.dataframe(env_data)
+    render_dashboard(env_data, "app", color = "lime")
 
 
 
