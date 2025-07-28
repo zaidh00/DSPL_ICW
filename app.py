@@ -4,9 +4,8 @@ import numpy as np
 import base64
 import plotly.express as px
 import plotly.graph_objects as go
-from sklearn.linear_model import LinearRegression
 
-st.set_page_config(page_title = "Sri Lanka Environment Dashboard", layout = "wide", initial_sidebar_state = "expanded")
+st.set_page_config(page_title = "Sri Lanka Environmental Dashboard", layout = "wide", initial_sidebar_state = "expanded")
 
 data = pd.read_csv("environment.csv")
 
@@ -135,11 +134,11 @@ def render_dashboard(filtered_data, name_prefix, color):
             st.info("Please select exactly 2 indicators.")
 
 # Page navigation
-page = st.sidebar.radio("*Go to*", ["Overview", "Agriculture", "Rural Development"])
+page = st.sidebar.radio("*Go to*", ["Overview", "Agriculture"])
 
 if page == "Overview":
     set_background("sri_lanka.jpg")
-    st.title("Sri Lanka Agriculture & Rural Development Dashboard")
+    st.title("Sri Lanka Environmental Dashboard")
     st.markdown("### Overview")
     st.markdown("The Sri Lanka Agriculture & Rural Development Dashboard is a comprehensive and interactive platform designed to explore key indicators related to the country’s agricultural performance and rural development progress. Developed using data published by the Humanitarian Data Exchange (HDX), along with global indicators compiled by the Food and Agriculture Organization of the United Nations, this tool provides valuable insights about agricultural and rural development trends across multiple years.")
     st.markdown("Agriculture and rural development are of critical importance to Sri Lanka’s economy and social well-being. The 70% of the world's poor who live in rural areas, agriculture remains the main source of income and employment. However, challenges such as land degradation, resource depletion, and water scarcity threaten long-term sustainability. Strengthening rural development not only enhances food security and economic resilience but also plays a vital role in achieving the United Nations Sustainable Development Goals, particularly those related to poverty reduction, hunger, and inclusive growth.")
@@ -162,12 +161,9 @@ if page == "Overview":
         st.dataframe(filtered_data)
         st.markdown(f":1234: Total Rows: {len(filtered_data)}")
 
-elif page == "Agriculture":
-    set_background("agriculture.jpg")
-    st.title(":ear_of_rice: Agriculture Insights")
-    agri_data = data[data["Indicator Code"].str.contains("AG|ER", case = False, na = False)]
-    if st.checkbox(":open_file_folder: *Show Agriculture Dataset*"):
-        st.dataframe(agri_data)
-    render_dashboard(agri_data, "agri", color = "lime")
+elif page == "Environment":
+    set_background("env.jpg")
+    st.title(":ear_of_rice: Environmental Insights")
+
 
 
